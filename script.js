@@ -8,7 +8,7 @@ JSON.parse(data).forEach((element) => {
                 <div class="grid-item2"><img class="img2"
                          src=${previewImage}
                          alt="load error"></div>
-                <div class="grid-item2-text">${title}</div>
+                <div class="grid-item2-text"><strong>${title}</strong></div>
             </div>`;
 });
 
@@ -24,7 +24,7 @@ const setImage = (item) => {
 };
 
 let curIndex = 0;
-images[curIndex].style.backgroundColor = "blue";
+images[curIndex].style.backgroundColor = "dodgerblue";
 images[curIndex].style.color = "white";
 setImage(images[curIndex]);
 
@@ -36,7 +36,7 @@ images.forEach((item, index) => {
     images[curIndex].style.color = "black";
 
     curIndex = index;
-    item.style.backgroundColor = "blue";
+    item.style.backgroundColor = "dodgerblue";
     item.style.color = "white";
     setImage(item);
   };
@@ -48,7 +48,7 @@ window.addEventListener("keydown", (event) => {
     images[curIndex].style.color = "black";
 
     curIndex = (curIndex + 1) % len;
-    images[curIndex].style.backgroundColor = "blue";
+    images[curIndex].style.backgroundColor = "dodgerblue";
     images[curIndex].style.color = "white";
     setImage(images[curIndex]);
   } else if (event.key == "ArrowUp") {
@@ -56,7 +56,7 @@ window.addEventListener("keydown", (event) => {
     images[curIndex].style.color = "black";
 
     curIndex = (curIndex - 1 + len) % len;
-    images[curIndex].style.backgroundColor = "blue";
+    images[curIndex].style.backgroundColor = "dodgerblue";
     images[curIndex].style.color = "white";
     setImage(images[curIndex]);
   }
@@ -67,5 +67,8 @@ curName.addEventListener("keydown", (event) => {
   event.stopPropagation();
 });
 
-curName.onchange = (event) =>
-  (images[curIndex].lastElementChild.textContent = event.target.value);
+curName.onchange = (event) => {
+  images[
+    curIndex
+  ].lastElementChild.innerHTML = `<strong>${event.target.value}</strong>`;
+};
