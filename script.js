@@ -15,10 +15,12 @@ JSON.parse(data).forEach((element) => {
 // render first imgae
 const images = Array.from(document.querySelectorAll(".flex-item"));
 const curPicture = document.querySelector("#right-panel").firstElementChild;
+const curName = document.querySelector("#name-box");
 
 const setImage = (item) => {
   let src = item.firstElementChild.firstElementChild.getAttribute("src");
   curPicture.setAttribute("src", src);
+  curName.value = item.lastElementChild.textContent;
 };
 
 let curIndex = 0;
@@ -59,3 +61,11 @@ window.addEventListener("keydown", (event) => {
     setImage(images[curIndex]);
   }
 });
+
+curName.addEventListener("keydown", (event) => {
+  if (event.key == "Enter") event.preventDefault();
+  event.stopPropagation();
+});
+
+curName.onchange = (event) =>
+  (images[curIndex].lastElementChild.textContent = event.target.value);

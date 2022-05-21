@@ -2,8 +2,8 @@
     object-fit: cover;
     object-position: center;
     width: 100%;
-    height: 100%;
-    border-radius: 1%;
+    height: 95%;
+    border-radius: 5px;
 }
 
 .img2 {
@@ -16,7 +16,7 @@
 
 #content {
     position: absolute;
-    width: 650px;
+    width: 700px;
     top: 0;
     bottom: 0;
     left: 0;
@@ -26,7 +26,7 @@
 
     display: grid;
     grid-template-columns: 300px auto;
-    grid-template-rows: 100%;
+    grid-template-rows: 98%;
 }
 
 #left-panel {
@@ -40,6 +40,7 @@
 
 .grid-item1 {
     padding: 10px;
+    border: 1px solid;
 }
 
 .flex-item {
@@ -58,4 +59,14 @@
 .grid-item2-text {
     float: left;
     padding: 15px 5px;
+}
+
+#name-box {
+    width: 96%;
+    margin: auto;
+    padding: 1px 5px;
+    text-align: center;
+
+    border-radius: 5px;
+    border-color: transparent;
 }
