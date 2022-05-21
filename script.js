@@ -25,3 +25,37 @@ let curIndex = 0;
 images[curIndex].style.backgroundColor = "blue";
 images[curIndex].style.color = "white";
 setImage(images[curIndex]);
+
+// adding event listeners
+let len = images.length;
+images.forEach((item, index) => {
+  item.onclick = () => {
+    images[curIndex].style.backgroundColor = "white";
+    images[curIndex].style.color = "black";
+
+    curIndex = index;
+    item.style.backgroundColor = "blue";
+    item.style.color = "white";
+    setImage(item);
+  };
+});
+
+window.addEventListener("keydown", (event) => {
+  if (event.key == "ArrowDown") {
+    images[curIndex].style.backgroundColor = "white";
+    images[curIndex].style.color = "black";
+
+    curIndex = (curIndex + 1) % len;
+    images[curIndex].style.backgroundColor = "blue";
+    images[curIndex].style.color = "white";
+    setImage(images[curIndex]);
+  } else if (event.key == "ArrowUp") {
+    images[curIndex].style.backgroundColor = "white";
+    images[curIndex].style.color = "black";
+
+    curIndex = (curIndex - 1 + len) % len;
+    images[curIndex].style.backgroundColor = "blue";
+    images[curIndex].style.color = "white";
+    setImage(images[curIndex]);
+  }
+});
