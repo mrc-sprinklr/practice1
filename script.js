@@ -4,11 +4,21 @@ const ok = await fetch("./Untitled.txt");
 const data = await ok.text();
 JSON.parse(data).forEach((element) => {
   let { previewImage, title } = element;
+
+  let Title;
+  if (title.length <= 25) Title = `<span class="text-end">${title}</span>`;
+  else {
+    Title = `<span class="text-ellipsis">${title.slice(
+      0,
+      -12
+    )}</span><span class="text-end">${title.slice(-12)}</span>`;
+  }
+
   sidePanel.innerHTML += `<div class="flex-item">
                 <div class="grid-item2"><img class="img2"
                          src=${previewImage}
                          alt="load error"></div>
-                <div class="grid-item2-text"><strong>${title}</strong></div>
+                <div class="grid-item2-text"><strong>${Title}</strong></div>
             </div>`;
 });
 
@@ -68,7 +78,14 @@ curName.addEventListener("keydown", (event) => {
 });
 
 curName.onchange = (event) => {
-  images[
-    curIndex
-  ].lastElementChild.innerHTML = `<strong>${event.target.value}</strong>`;
+  let [title, Title] = [event.target.value, null];
+  if (title.length < 25) Title = `<span class="text-end">${title}</span>`;
+  else {
+    Title = `<span class="text-ellipsis">${title.slice(
+      0,
+      -12
+    )}</span><span class="text-end">${title.slice(-12)}</span>`;
+  }
+
+  images[curIndex].lastElementChild.innerHTML = `<strong>${Title}</strong>`;
 };

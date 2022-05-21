@@ -55,9 +55,22 @@
     color: black;
 }
 
-.grid-item2-text {
-    float: left;
-    padding: 15px 5px;
+.text-ellipsis {
+    display: inline-block;
+    max-width: 100px;
+    padding: 15px 0 15px 2px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-end {
+    display: inline-block;
+    padding: 15px 2px 15px 2px;
+
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #name-box {
