@@ -2,7 +2,7 @@
     object-fit: cover;
     object-position: center;
     width: 100%;
-    height: 95%;
+    height: 94%;
     border-radius: 5px;
 }
 
@@ -21,12 +21,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    margin: 20px auto;
+    margin: 10px auto;
     padding: 5px;
 
     display: grid;
     grid-template-columns: 300px auto;
-    grid-template-rows: 98%;
+    grid-template-rows: 100%;
 }
 
 #left-panel {
@@ -60,24 +60,11 @@
     color: white !important;
 }
 
-.grid-item2-img {
-    margin: 1px 3px;
-}
-
-.text-ellipsis {
+.grid-item2-text {
     display: inline-block;
-    max-width: 100px;
-    padding: 15px 0;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.text-end {
-    display: inline-block;
-    padding: 15px 0;
-
+    font-size: 15px;
+    font-weight: bold;
+    padding: 15px 5px;
     white-space: nowrap;
     overflow: hidden;
 }
