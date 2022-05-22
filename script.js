@@ -1,28 +1,31 @@
+// html blocks to inject at runtime
+const generateTitleHtml = (title) => {
+  if (title.length <= 12)
+    return `<strong><span class="text-end">${title}</span></strong>`;
+  else
+    return `<strong><span class="text-ellipsis">${title.slice(0, -8)}
+    </span><span class="text-end">${title.slice(-8)}</span></strong>`;
+};
+
+const generateImageHtml = (src, title) => {
+  return `<div class="flex-item">
+                <div class="grid-item2-img"><img class="img2"
+                         src=${src}
+                         alt="load error"></div>
+                <div class="grid-item2">${generateTitleHtml(title)}</div>
+            </div>`;
+};
+
 // load data from json
 const sidePanel = document.querySelector("#left-panel");
 const ok = await fetch("./Untitled.txt");
 const data = await ok.text();
 JSON.parse(data).forEach((element) => {
   let { previewImage, title } = element;
-
-  let Title;
-  if (title.length <= 25) Title = `<span class="text-end">${title}</span>`;
-  else {
-    Title = `<span class="text-ellipsis">${title.slice(
-      0,
-      -12
-    )}</span><span class="text-end">${title.slice(-12)}</span>`;
-  }
-
-  sidePanel.innerHTML += `<div class="flex-item">
-                <div class="grid-item2"><img class="img2"
-                         src=${previewImage}
-                         alt="load error"></div>
-                <div class="grid-item2-text"><strong>${Title}</strong></div>
-            </div>`;
+  sidePanel.innerHTML += generateImageHtml(previewImage, title);
 });
 
-// render first imgae
+// render first image at right panel
 const images = Array.from(document.querySelectorAll(".flex-item"));
 const curPicture = document.querySelector("#right-panel").firstElementChild;
 const curName = document.querySelector("#name-box");
@@ -34,40 +37,30 @@ const setImage = (item) => {
 };
 
 let curIndex = 0;
-images[curIndex].style.backgroundColor = "dodgerblue";
-images[curIndex].style.color = "white";
+images[curIndex].classList.add("flex-item-selected");
 setImage(images[curIndex]);
 
 // adding event listeners
-let len = images.length;
+const len = images.length;
 images.forEach((item, index) => {
   item.onclick = () => {
-    images[curIndex].style.backgroundColor = "white";
-    images[curIndex].style.color = "black";
+    images[curIndex].classList.remove("flex-item-selected");
 
     curIndex = index;
-    item.style.backgroundColor = "dodgerblue";
-    item.style.color = "white";
-    setImage(item);
+
+    images[curIndex].classList.add("flex-item-selected");
+    setImage(images[curIndex]);
   };
 });
 
 window.addEventListener("keydown", (event) => {
-  if (event.key == "ArrowDown") {
-    images[curIndex].style.backgroundColor = "white";
-    images[curIndex].style.color = "black";
+  if (event.key == "ArrowDown" || event.key == "ArrowUp") {
+    images[curIndex].classList.remove("flex-item-selected");
 
-    curIndex = (curIndex + 1) % len;
-    images[curIndex].style.backgroundColor = "dodgerblue";
-    images[curIndex].style.color = "white";
-    setImage(images[curIndex]);
-  } else if (event.key == "ArrowUp") {
-    images[curIndex].style.backgroundColor = "white";
-    images[curIndex].style.color = "black";
+    if (event.key == "ArrowDown") curIndex = (curIndex + 1) % len;
+    else curIndex = (curIndex - 1 + len) % len;
 
-    curIndex = (curIndex - 1 + len) % len;
-    images[curIndex].style.backgroundColor = "dodgerblue";
-    images[curIndex].style.color = "white";
+    images[curIndex].classList.add("flex-item-selected");
     setImage(images[curIndex]);
   }
 });
@@ -78,14 +71,6 @@ curName.addEventListener("keydown", (event) => {
 });
 
 curName.onchange = (event) => {
-  let [title, Title] = [event.target.value, null];
-  if (title.length < 25) Title = `<span class="text-end">${title}</span>`;
-  else {
-    Title = `<span class="text-ellipsis">${title.slice(
-      0,
-      -12
-    )}</span><span class="text-end">${title.slice(-12)}</span>`;
-  }
-
-  images[curIndex].lastElementChild.innerHTML = `<strong>${Title}</strong>`;
+  let element = images[curIndex].lastElementChild;
+  element.innerHTML = generateTitleHtml(event.target.value);
 };

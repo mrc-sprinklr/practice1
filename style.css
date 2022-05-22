@@ -39,7 +39,7 @@
 }
 
 .grid-item1 {
-    padding: 10px;
+    padding: 5px;
 }
 
 .flex-item {
@@ -55,10 +55,19 @@
     color: black;
 }
 
+.flex-item-selected {
+    background-color: dodgerblue !important;
+    color: white !important;
+}
+
+.grid-item2-img {
+    margin: 1px 3px;
+}
+
 .text-ellipsis {
     display: inline-block;
     max-width: 100px;
-    padding: 15px 0 15px 2px;
+    padding: 15px 0;
 
     white-space: nowrap;
     overflow: hidden;
@@ -67,7 +76,7 @@
 
 .text-end {
     display: inline-block;
-    padding: 15px 2px 15px 2px;
+    padding: 15px 0;
 
     white-space: nowrap;
     overflow: hidden;
