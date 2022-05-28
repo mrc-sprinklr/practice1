@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(45deg, powderblue 10%, azure 30%, seashell 50%, beige 70%, blanchedalmond 90%);
+    background-image: linear-gradient(45deg, powderblue 10%, azure 30%, whitesmoke 50%, azure 70%, powderblue 90%);
 }
 
 .img1 {
@@ -29,8 +29,15 @@ body {
     padding: 5px;
 
     display: grid;
-    grid-template-columns: 300px auto;
-    grid-template-rows: 100%;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+}
+
+@media (min-width: 768px) {
+    #content {
+        grid-template-columns: 300px auto;
+        grid-template-rows: 100%;
+    }
 }
 
 #left-panel {
