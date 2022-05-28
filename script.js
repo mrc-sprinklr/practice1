@@ -88,8 +88,8 @@ curName.addEventListener("keydown", (event) => {
   event.stopPropagation();
 });
 
-curName.onchange = (event) => {
+curName.addEventListener("keyup", (event) => {
   let element = images[curIndex].lastElementChild;
   element.innerHTML = event.target.value;
   contractTitle(element);
-};
+});
